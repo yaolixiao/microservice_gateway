@@ -1,0 +1,2 @@
+# ginscaffold
+scaffold of gin
