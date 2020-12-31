@@ -18,13 +18,18 @@
     log_level = "trace"         #日志打印最低级别
     [log.file_writer]           #文件写入配置
         on = true
-        log_path = "./logs/gin_scaffold.inf.log"
-        rotate_log_path = "./logs/gin_scaffold.inf.log.%Y%M%D%H"
-        wf_log_path = "./logs/gin_scaffold.wf.log"
-        rotate_wf_log_path = "./logs/gin_scaffold.wf.log.%Y%M%D%H"
+        log_path = "./logs/microservice_gateway.inf.log"
+        rotate_log_path = "./logs/microservice_gateway.inf.log.%Y%M%D%H"
+        wf_log_path = "./logs/microservice_gateway.wf.log"
+        rotate_wf_log_path = "./logs/microservice_gateway.wf.log.%Y%M%D%H"
     [log.console_writer]        #工作台输出
         on = false
         color = false
+
+[cluster]
+    cluster_ip = "127.0.0.1"
+    cluster_port = "8880"
+    cluster_ssl_port = "4880"
 
 [swagger]
     title="microservice_gateway swagger API"
