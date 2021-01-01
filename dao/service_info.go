@@ -51,6 +51,10 @@ func (this *ServiceInfo) PageList(c *gin.Context, tx *gorm.DB, param *dto.Servic
 
 // 服务详情查询
 func (this *ServiceInfo) ServiceDetail(c *gin.Context, tx *gorm.DB, search *ServiceInfo) (*ServiceDetail, error) {
+	
+	// todo
+	// 判断ServiceInfo是否有数据，没有数据则需要Find
+	
 	httpRule := &HttpRule{ServiceId: search.Id}
 	httpRule, err := httpRule.Find(c, tx, httpRule)
 	if err != nil && err != gorm.ErrRecordNotFound {
