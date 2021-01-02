@@ -107,7 +107,7 @@ func (this *AdminController) ChangePwd(c *gin.Context) {
 		middleware.ResponseError(c, 2004, err)
 		return
 	}
-
+	
 	// 返回客户端
 	middleware.ResponseSuccess(c, "")
 }
