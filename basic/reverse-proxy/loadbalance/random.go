@@ -7,7 +7,7 @@ import (
 )
 
 // 随机负载均衡
-// 2020-01-05
+// 2021-01-05
 
 type RandomBalance struct {
 	curIndex int
