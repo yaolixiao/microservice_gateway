@@ -23,6 +23,24 @@ func (this *ServiceInfo) TableName() string {
 	return "gateway_service_info"
 }
 
+// 首页大盘-服务类型统计查询
+func (this *ServiceInfo) GroupByLoadType(c *gin.Context, tx *gorm.DB) ([]dto.DashServiceStatItemOutput, error) {
+	// 定义并初始化返回值
+	list := []dto.DashServiceStatItemOutput{}
+	query := tx.SetCtx(public.GetGinTraceContext(c))
+
+	err := query.Table(this.TableName()).
+				  Where("is_delete=0").
+				  Select("load_type, count(*) as value").
+				  Group("load_type").
+				  Scan(&list).Error
+	
+	if err != nil {
+		return nil, err
+	}
+	return list, nil
+}
+
 // 服务列表分页查询
 func (this *ServiceInfo) PageList(c *gin.Context, tx *gorm.DB, param *dto.ServiceListInput) ([]ServiceInfo, int64, error) {
 	// 定义并初始化返回值

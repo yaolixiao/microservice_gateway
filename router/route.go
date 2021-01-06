@@ -91,5 +91,19 @@ func InitRouter(middlewares ...gin.HandlerFunc) *gin.Engine {
 		controller.AppRegister(appRouter)
 	}
 
+	// 首页大盘router
+	dashboardRouter := router.Group("/dashboard")
+	dashboardRouter.Use(
+		sessions.Sessions("mysession", store),
+		middleware.RecoveryMiddleware(),
+		middleware.RequestLog(),
+		middleware.SessionAuthMiddleware(),
+		middleware.TranslationMiddleware(),
+	)
+	// 注册子路由
+	{
+		controller.DashboardRegister(dashboardRouter)
+	}
+
 	return router
 }
