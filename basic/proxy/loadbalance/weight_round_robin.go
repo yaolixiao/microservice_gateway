@@ -1,7 +1,6 @@
-package main
+package loadbalance
 
 import (
-	"fmt"
 	"errors"
 	"strconv"
 )
@@ -14,16 +13,16 @@ import (
 // 3. currentWeight = currentWeight - totalWeight(sum(effectiveWeight))
 
 type WeightNode struct {
-	addr 			string
-	weight 			int // 权重值
-	currentWeight 	int // 节点当前权重
+	addr            string
+	weight          int // 权重值
+	currentWeight   int // 节点当前权重
 	effectiveWeight int // 有效权重
 }
 
 type WeightRoundRobinBalance struct {
 	curIndex int
-	rss []*WeightNode
-	rsw []int
+	rss      []*WeightNode
+	rsw      []int
 
 	// 观察者模式
 	// conf LoadBalanceConf
@@ -73,25 +72,25 @@ func (this *WeightRoundRobinBalance) Next() string {
 	return best.addr
 }
 
-func main() {
-	rb := &WeightRoundRobinBalance{}
-	rb.Add("127.0.0.1:8001", "40")
-	rb.Add("127.0.0.1:8002", "30")
-	rb.Add("127.0.0.1:8003", "20")
+// func main() {
+// 	rb := &WeightRoundRobinBalance{}
+// 	rb.Add("127.0.0.1:8001", "40")
+// 	rb.Add("127.0.0.1:8002", "30")
+// 	rb.Add("127.0.0.1:8003", "20")
 
-	fmt.Println(rb.Next())
-	fmt.Println(rb.Next())
-	fmt.Println(rb.Next())
-	fmt.Println(rb.Next())
-	fmt.Println(rb.Next())
-	fmt.Println(rb.Next())
-	fmt.Println(rb.Next())
-	fmt.Println(rb.Next())
-	fmt.Println(rb.Next())
-	fmt.Println(rb.Next())
-	fmt.Println(rb.Next())
-	fmt.Println(rb.Next())
-	fmt.Println(rb.Next())
-	fmt.Println(rb.Next())
-	fmt.Println(rb.Next())
-}
+// 	fmt.Println(rb.Next())
+// 	fmt.Println(rb.Next())
+// 	fmt.Println(rb.Next())
+// 	fmt.Println(rb.Next())
+// 	fmt.Println(rb.Next())
+// 	fmt.Println(rb.Next())
+// 	fmt.Println(rb.Next())
+// 	fmt.Println(rb.Next())
+// 	fmt.Println(rb.Next())
+// 	fmt.Println(rb.Next())
+// 	fmt.Println(rb.Next())
+// 	fmt.Println(rb.Next())
+// 	fmt.Println(rb.Next())
+// 	fmt.Println(rb.Next())
+// 	fmt.Println(rb.Next())
+// }

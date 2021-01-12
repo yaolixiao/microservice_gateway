@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"net/http/httputil"
 	"net/url"
 )
 
@@ -41,9 +42,15 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	// 启动代理服务器
-	http.HandleFunc("/", handler)
-	fmt.Println("starting server at", ":"+port)
-	if err := http.ListenAndServe(":"+port, nil); err != nil {
-		log.Fatal(err)
-	}
+	// http.HandleFunc("/", handler)
+	// fmt.Println("starting server at", ":"+port)
+	// if err := http.ListenAndServe(":"+port, nil); err != nil {
+	// 	log.Fatal(err)
+	// }
+
+	var proxy_addr1 = "http://127.0.0.1:2003/base"
+	url1, _ := url.Parse(proxy_addr1)
+	proxy := httputil.NewSingleHostReverseProxy(url1)
+	fmt.Println("starting server at :2002")
+	http.ListenAndServe(":2002", proxy)
 }
