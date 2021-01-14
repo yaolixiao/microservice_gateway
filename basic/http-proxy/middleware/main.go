@@ -33,7 +33,7 @@ func main() {
 		// 中间件处理业务逻辑
 		c.Rw.Write([]byte("业务逻辑..."))
 	})
-	sliceRouter.Group("/").Use(middleware.TraceLogSlice(), func(c *middleware.SliceRouterContext) {
+	sliceRouter.Group("/").Use(middleware.RateLimiter(), middleware.TraceLogSlice(), func(c *middleware.SliceRouterContext) {
 		// 中间件请求到代理服务器
 		fmt.Println("reverseProxy...")
 		reverseProxy.ServeHTTP(c.Rw, c.Req)
