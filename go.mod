@@ -27,7 +27,7 @@ require (
 	github.com/yaolixiao/golang_common v0.0.0-20201230110003-7d59f7121fa8
 	github.com/yaolixiao/gorm v0.0.0-20201226161228-eb120828a965
 	golang.org/x/mod v0.4.0 // indirect
-	golang.org/x/net v0.0.0-20201224014010-6772e930b67b // indirect
+	golang.org/x/net v0.0.0-20201224014010-6772e930b67b
 	golang.org/x/time v0.0.0-20190308202827-9d24e82272b4
 	golang.org/x/tools v0.0.0-20210108195828-e2f9c7f1fc8e // indirect
 	gopkg.in/go-playground/validator.v9 v9.31.0
