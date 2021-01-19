@@ -2,7 +2,9 @@ package loadbalance
 
 import (
 	"errors"
+	"fmt"
 	"strconv"
+	"strings"
 )
 
 // 加权负载均衡
@@ -25,7 +27,7 @@ type WeightRoundRobinBalance struct {
 	rsw      []int
 
 	// 观察者模式
-	// conf LoadBalanceConf
+	conf LoadBalanceConf
 }
 
 func (this *WeightRoundRobinBalance) Add(params ...string) error {
@@ -70,6 +72,24 @@ func (this *WeightRoundRobinBalance) Next() string {
 	// 5. 变更临时权重为currentWeight-total
 	best.currentWeight -= total
 	return best.addr
+}
+
+func (this *WeightRoundRobinBalance) SetConf(conf LoadBalanceConf) {
+	this.conf = conf
+}
+
+func (this *WeightRoundRobinBalance) Update() {
+	if conf, ok := this.conf.(*LoadBalanceZkConf); ok {
+		olist := conf.GetConf()
+		fmt.Println("权重轮询观察者列表：", olist)
+		for _, ipw := range olist {
+			ipws := strings.Split(ipw, ",")
+			this.Add(ipws...)
+		}
+
+	} else {
+		fmt.Println("权重轮询观察者 类型断言失败")
+	}
 }
 
 // func main() {

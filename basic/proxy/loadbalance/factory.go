@@ -26,3 +26,14 @@ func LoadBalanceFactory(lbType LbType) LoadBalance {
 		return &RandomBalance{}
 	}
 }
+
+func LoadBalanceFactoryWithConf(lbType LbType, conf LoadBalanceConf) LoadBalance {
+	if lbType == WEIGHTROUNDROBIN {
+		lb := &WeightRoundRobinBalance{}
+		lb.SetConf(conf)
+		conf.Attach(lb)
+		lb.Update()
+		return lb
+	}
+	return LoadBalanceFactory(lbType)
+}
