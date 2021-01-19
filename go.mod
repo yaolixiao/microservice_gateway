@@ -19,6 +19,7 @@ require (
 	github.com/nsf/gocode v0.0.0-20190302080247-5bee97b48836 // indirect
 	github.com/pkg/errors v0.8.1
 	github.com/rogpeppe/godef v1.1.2 // indirect
+	github.com/samuel/go-zookeeper v0.0.0-20201211165307-7117e9ea2414
 	github.com/sqs/goreturns v0.0.0-20181028201513-538ac6014518 // indirect
 	github.com/swaggo/files v0.0.0-20190704085106-630677cd5c14
 	github.com/swaggo/gin-swagger v1.3.0
