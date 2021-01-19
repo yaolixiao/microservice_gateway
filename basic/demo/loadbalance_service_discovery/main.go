@@ -23,9 +23,6 @@ func main() {
 	}
 
 	lb := loadbalance.LoadBalanceFactoryWithConf(loadbalance.WEIGHTROUNDROBIN, conf)
-	// lb.Add("http://127.0.0.1:2003/base", "40")
-	// lb.Add("http://127.0.0.1:2004/base", "20")
-
 	reverseProxy := proxy.NewMultipleHostsReverseProxy(lb)
 	fmt.Println("starting server at", addr)
 	http.ListenAndServe(addr, reverseProxy)
